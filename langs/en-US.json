@@ -116,7 +116,7 @@
         "reminders": {
             "reminderSetShort": "I'll remind you about this at about {timestamp}.\nUse `{prefix}forget {rowId}` to delete this reminder.\n",
             "reminderSetLong": "Reminder set to trigger {remindAfter}{remindReoccur}\n> {remindMsg}",
-            "reoccurSetShort": "Reminder set to trigger {remindAfter} and to reoccur `{remindReoccur}`\nUse `{prefix}forget {rowId}` to delete this reoccurrence.\n",
+            "reoccurSetShort": "Scheduled reminder set to trigger {remindAfter} and to reoccur `{remindReoccur}`\nUse `{prefix}forget {rowId}` to delete this item.\n",
             "reminderError": "An error occurred trying to  set this reminder :(. Some kind of reminder database issue.",
             "idInvalidError": "That is not a valid reminder Id. Please send the integer Id of a reminder that has been made before",
             "noReminderIdError": "No reminder found with id {rowId}.",

@@ -91,7 +91,7 @@ class Reminders(commands.Cog, name='Reminders'):
                   '30th, 29th, or 28th of subsequent months as needed.\n'
                   'This command also supports abbreviations, e.g. w for weekly or me for month-end.')
     )
-    async def reoccur(self, ctx, *, message=None):
+    async def schedule(self, ctx, *, message=None):
         if not message:
             return await ctx.send(locale.get_string('helpMessage', prefix=config.PREFIX))
 

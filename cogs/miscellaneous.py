@@ -40,21 +40,6 @@ class Misc(commands.Cog, name='Miscellaneous'):
             log.exception(e)
             await ctx.send(globalLocale.get_string('genericError'))
 
-    @commands.command(brief='Stop doing nomic', help='Stop doing it.', aliases=['stop', 'stahp'])
-    async def stopdoingnomic(self, ctx):
-        await self.stopdoing.choose(ctx, None, True)
-
-    @commands.Cog.listener('on_message')
-    async def stopdoingnomic_inline(self, message):
-        # Don't ever reply to bots
-        if message.author.bot:
-            return
-
-        if message.guild is None or message.guild.id not in STOP_DOING_ONMESSAGE_GUILD_WHITELIST:
-            return
-
-        await self.stopdoing.choose(message.channel, message.content)
-
     @commands.command(
         brief='Draw a number of cards',
         help=('Automatically roll some dice and report back the dice rolls and '
@@ -96,12 +81,6 @@ class Misc(commands.Cog, name='Miscellaneous'):
         await ctx.send(locale.get_string('timestampSuccess',
                                          formattedTimestamp=formattedTimestamp,
                                          timestamp=timestamp))
-
-    @commands.command(
-        brief='Play the Prospecting demo minigame'
-    )
-    async def prospect(self, ctx):
-        await prospecting.run_game(ctx, self.bot)
 
     @commands.command(
         brief='Roll some dice',

@@ -30,8 +30,7 @@ intents.reactions = True
 activity = discord.ActivityType.listening
 client = commands.Bot(command_prefix=PREFIX,
                       description=(
-                          'A general-use bot for the Infinite Nomic discord '
-                          'server.'),
+                          'A general-use bot for a game of Cataphract.'),
                       help_command=help_command,
                       activity=discord.Activity(type=activity, name=PREFIX),
                       intents=intents
@@ -67,9 +66,7 @@ async def setup_hook():
     language.Locale(None).initialize()
 
     # Load cogs
-    cogs = ['cogs.cycle', 'cogs.image_manipulation',
-            'cogs.reminders', 'cogs.miscellaneous', 'cogs.loot',
-            'cogs.vote_tracking', 'cogs.secret']
+    cogs = ['cogs.reminders', 'cogs.miscellaneous', 'cogs.loot']
 
     # Development cogs
     if DEBUG:
