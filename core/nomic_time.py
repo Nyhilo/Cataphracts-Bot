@@ -138,26 +138,21 @@ def _get_week_name(phase: int) -> str:
 def get_formatted_date_string(timestamp: int = None) -> str:
     '''
     Gets a formatted datestring for the given timestamp. Returns the time string
-     for the current time if no timestamp is given. Rounds down to the nearest
-     10 minutes.
+     for the current time if no timestamp is given.
 
     :param timestamp: UTC timestamp, defaults to None
     :return: Formatted datetime string
     '''
+    dt = None
     if timestamp is None:
-        timestamp = get_timestamp(utc_now())
+        istTimeOffset = -14
+        dt = utc_now() + timedelta(hours=istTimeOffset)
+    else:
+        dt = get_datetime(timestamp)
 
-    format = '%a %b %d, %H:%M UTC'
-
-    msg = datetime.utcfromtimestamp(timestamp).strftime(format)
-
-    # 'round down' to the nearest 10 minutes by replacing ones digit with 0 if we happen to grab this at an odd time
-    # NOTE: The index on this part may change if time format changes
-    msg_ = list(msg)
-    msg_[-5] = '0'
-    msg = ''.join(msg_)
-
-    return msg
+    dayEmoji = '☀️' if dt.hour >= 6 and dt.hour < 18 else get_moon_phase(dt)
+    tod = get_diagetic_tod(dt)
+    return f'{dayEmoji} {tod}'
 
 
 def get_current_phase_string():
@@ -266,6 +261,43 @@ def get_full_days_ago(days: int) -> datetime:
     )
 
 
+def get_moon_phase(date: datetime):
+    moonPhases = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘']
+    phaseCount = len(moonPhases)
+    moonCyclePeriod = 29.53058867
+    offset = (moonCyclePeriod / phaseCount) / 2
+
+    referenceNewMoon = datetime(2025, 1, 29, tzinfo=timezone.utc)
+    daysSinceReference = (date - referenceNewMoon).days + offset
+    daysSinceNewMoon = (daysSinceReference % moonCyclePeriod)
+    phaseIndex = int((daysSinceNewMoon * phaseCount) // moonCyclePeriod)
+
+    return moonPhases[phaseIndex]
+
+
+def get_diagetic_tod(date: datetime):
+    tods = [
+            'Midnight',         # 11 - 1am
+            'Past Midnight',    # 1 - 3am
+            'Before Dawn',      # 3 - 5am
+
+            'Dawn',             # 5 - 7am
+            'Early Morning',    # 7 - 9am
+            'Morning',          # 9 - 11am
+
+            'Noon',             # 11 - 1pm
+            'Afternoon',        # 1 - 3pm
+            'Late Afternoon',   # 3 - 5pm
+
+            'Dusk',             # 5 - 7pm
+            'Evening',          # 7 - 9pm
+            'Late Evening',     # 9 - 11pm
+            ]
+    hour = 0 if date.hour == 23 else date.hour + 1
+    index = int(hour / (24/len(tods)))
+    return tods[index]
+
+
 ######################
 # Timstamp Utilities #
 ######################
@@ -292,7 +324,7 @@ def get_timestamp(date: datetime) -> int:
 
 
 def get_datetime(timestamp: int) -> datetime:
-    return datetime.utcfromtimestamp(timestamp).replace(tzinfo=timezone.utc)
+    return datetime.fromtimestamp(timestamp, timezone.utc)
 
 
 def get_datestring_datetime(datestring: str) -> datetime:

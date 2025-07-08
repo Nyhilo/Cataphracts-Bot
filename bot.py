@@ -66,7 +66,7 @@ async def setup_hook():
     language.Locale(None).initialize()
 
     # Load cogs
-    cogs = ['cogs.reminders', 'cogs.miscellaneous', 'cogs.loot']
+    cogs = ['cogs.cycle', 'cogs.reminders', 'cogs.miscellaneous', 'cogs.loot']
 
     # Development cogs
     if DEBUG:
