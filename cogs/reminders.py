@@ -91,7 +91,7 @@ class Reminders(commands.Cog, name='Reminders'):
                   '30th, 29th, or 28th of subsequent months as needed.\n'
                   'This command also supports abbreviations, e.g. w for weekly or me for month-end.')
     )
-    async def reoccur(self, ctx, *, message=None):
+    async def schedule(self, ctx, *, message=None):
         if not message:
             return await ctx.send(locale.get_string('helpMessage', prefix=config.PREFIX))
 
@@ -201,8 +201,8 @@ class Reminders(commands.Cog, name='Reminders'):
             except discord.NotFound:
                 await replyTo.reply(locale.get_string('remindChannelNotFound',
                                                       userAt=userAt, createdAt=createdAt, message=_msg))
-
-            log.info(reminders.unset_reminder(rowId, overrideId=True))
+            if task['Reoccur'] is None or task['Reoccur'] == 0:
+                log.info(reminders.unset_reminder(rowId, overrideId=True))
 
 
 async def handle_set_reminder(ctx, userId, createdAt, messageId, channelId, remindAfter, msg, reoccur=Reoccur.NONE):

@@ -6,7 +6,7 @@ import os
 
 from dotenv import load_dotenv
 
-from config.config import DEBUG, PREFIX, CACHE_FOLDER
+from config.config import DEBUG, PREFIX
 from core.log import log
 
 
@@ -29,8 +29,7 @@ intents.reactions = True
 activity = discord.ActivityType.listening
 client = commands.Bot(command_prefix=PREFIX,
                       description=(
-                          'A general-use bot for the Infinite Nomic discord '
-                          'server.'),
+                          'A general-use bot for a game of Cataphract.'),
                       help_command=help_command,
                       activity=discord.Activity(type=activity, name=PREFIX),
                       intents=intents
@@ -53,13 +52,9 @@ async def on_ready():
 async def setup_hook():
     log.info("Starting bot...")
 
-    # Setup caching folder
-    if not os.path.exists(CACHE_FOLDER):
-        os.makedirs(CACHE_FOLDER)
-
     # Setup database
-    from core.db import reminders_db, pools_db, settings_db, reactions_db
-    for db in [reminders_db, pools_db, settings_db, reactions_db]:
+    from core.db import reminders_db, pools_db, settings_db
+    for db in [reminders_db, pools_db, settings_db]:
         db.set_tables()
 
     # Setup locale files
@@ -67,9 +62,7 @@ async def setup_hook():
     language.Locale(None).initialize()
 
     # Load cogs
-    cogs = ['cogs.cycle', 'cogs.image_manipulation',
-            'cogs.reminders', 'cogs.miscellaneous', 'cogs.loot',
-            'cogs.vote_tracking', 'cogs.secret']
+    cogs = ['cogs.cycle', 'cogs.reminders', 'cogs.miscellaneous', 'cogs.loot']
 
     # Development cogs
     if DEBUG:
