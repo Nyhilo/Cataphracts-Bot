@@ -1,13 +1,10 @@
 import discord  # noqa F401
 from discord.ext import commands, tasks
 import asyncio
-import contextlib
-from dateutil.parser import ParserError
 
 from core.log import log
 from core import nomic_time
 from config import config
-from config.settings import settings
 
 import core.language as language
 

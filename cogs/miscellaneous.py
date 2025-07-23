@@ -2,8 +2,8 @@ import discord  # noqa: F401
 from discord.ext import commands
 
 from core.log import log
-from core import nomic_time, sha as shalib, utils, stopdoing, language, prospecting
-from config.config import PREFIX, STOP_DOING_ONMESSAGE_GUILD_WHITELIST
+from core import nomic_time, sha as shalib, utils, language
+from config.config import PREFIX
 
 import d20
 
@@ -18,7 +18,6 @@ class Misc(commands.Cog, name='Miscellaneous'):
 
     def __init__(self, bot):
         self.bot = bot
-        self.stopdoing = stopdoing.StopDoing(bot)
 
     @commands.command(
         brief='Gets the SHA256 for a given input',
@@ -36,32 +35,6 @@ class Misc(commands.Cog, name='Miscellaneous'):
             filteredMessage = utils.trim_quotes(message)
             hash = shalib.get_sha_256(filteredMessage)
             await ctx.send(locale.get_string('shaHashGiven', hash=hash))
-        except Exception as e:
-            log.exception(e)
-            await ctx.send(globalLocale.get_string('genericError'))
-
-    @commands.command(
-        brief='Draw a number of cards',
-        help=('Automatically roll some dice and report back the dice rolls and '
-              'the cards generated from those dice rolls. Will return 1 set of 1 '
-              'card by default. First argument is number of cards, second argument '
-              'is size of card sets. Maximum draw is 100.\n')
-    )
-    async def draw(self, ctx, number=1, size=1):
-        if number * size < 1:
-            return await ctx.send(locale.get_string('cardsNotPositive'))
-
-        maxcards = 50
-        if number * size > maxcards:
-            return await ctx.send(locale.get_string('cardTooMany', maxcards=maxcards))
-
-        try:
-            if number * size > 1:
-                await ctx.send(locale.get_string('cardSuccessPlural'))
-            else:
-                await ctx.send(locale.get_string('cardSuccess'))
-
-            await ctx.send(utils.draw_random_card_sets(number, size))
         except Exception as e:
             log.exception(e)
             await ctx.send(globalLocale.get_string('genericError'))

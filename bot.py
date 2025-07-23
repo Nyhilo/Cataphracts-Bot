@@ -6,7 +6,7 @@ import os
 
 from dotenv import load_dotenv
 
-from config.config import DEBUG, PREFIX, CACHE_FOLDER
+from config.config import DEBUG, PREFIX
 from core.log import log
 
 from core import language
@@ -53,13 +53,9 @@ async def on_ready():
 async def setup_hook():
     log.info("Starting bot...")
 
-    # Setup caching folder
-    if not os.path.exists(CACHE_FOLDER):
-        os.makedirs(CACHE_FOLDER)
-
     # Setup database
-    from core.db import reminders_db, pools_db, settings_db, reactions_db
-    for db in [reminders_db, pools_db, settings_db, reactions_db]:
+    from core.db import reminders_db, pools_db, settings_db
+    for db in [reminders_db, pools_db, settings_db]:
         db.set_tables()
 
     # Setup locale files

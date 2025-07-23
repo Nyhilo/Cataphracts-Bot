@@ -1,13 +1,10 @@
 {
     "global": {
-        "genericError": "Ah shit that didn't work.\nJust let ny know they'll fix it.",
+        "genericError": "Whoops! Something when very wrong there. Contact Nyhilo to see what's up.",
         "rateLimitMessage": "*We are being rate limited by discord. I'll let you know when your command has resolved within a few minutes.*"
     },
     "cogs": {
         "cycle": {},
-        "image_manipulation": {
-            "imageNotSupported": "Either I don't support that image type or you didn't send or reply to an image."
-        },
         "locale": {
             "setNoLocaleGiven": "Please include the name of the locale you want to set.",
             "setLocaleNotFound": "A locale with that name was not found.",
@@ -37,7 +34,7 @@
             "removeAdditionsBadFormat": "Please list removals by amount, then result description.",
             "removeTooManyResults": "Removing entries from a result is limited to 1000 entries at a time.",
             "errorNotIntegers": "The number of rolls and extra entries should be integers.",
-            "errorNotPositive": "The number of rolls and extra entries should be positive integers.",
+            "errorNotPositive": "The number of rolls and extra entries should be positive integers."
         },
         "misc": {
             "shaInputMissing": "Please include the message you would like me to hash.",
@@ -62,18 +59,6 @@
             "remindFoundShort": "Hey, reminding you about this thing.\n\n{message}",
             "getReoccurrence": "How often would you like this reminder to reoccur?\n{reoccurList}",
             "reoccurTimeout": "Waited too long for response. Reminder not set, please try again."
-        },
-        "secret": {
-            "secretNone": "Please send a message to hash."
-        },
-        "vote_tracking": {
-            "trackChannelNotAdmin": "Sorry, you don't have permission to create new trackers.",
-            "trackChannelNotGiven": "Please provide the channel you would like to track here in the form of `#channel`.",
-            "trackChannelNotFormatted": "Please provide an existing channel in the form of `#channel`.",
-            "trackChannelNotFound": "Could not find a channel with that name. Did- did you just type in a fake channel name to mess with me?",
-            "trackChannelNotPermitted": "I don't have permission to view messages on that channel.",
-            "untrackChannelNotAdmin": "Sorry, you don't have permission to remove trackers.",
-            "untrackChannelNotGiven": "Please provide the channel you would like to remove the tracking for in the form of `#channel`."
         }
     },
     "core": {
@@ -98,20 +83,7 @@
             "poolDeleteFail": "Whoops, something went wrong trying to remove the pool named {poolName}."
         },
         "nomic_time": {
-            "timeUtcReportString": "It is **{time}** on **{weekday}**, UTC\nThat means it is **{phase}**\n\n*{nextPhase}* starts on *{nextDay}*, which is roughly {nextDayRelativeTimestampStr}.\nThat is {nextDayTimestampStr} your time.",
-            "weekName": "Week {number}",
-            "phaseNameNegative": "Phase ♾️",
-            "khronosPhaseString": "{phaseName}, {weekName}",
-            "phaseEndFar": "Next Phase in {hours} hrs",
-            "phaseEndNear": "Next Phase in {minutes} min"
-        },
-        "nomic_time_on_break": {
-            "timeUtcReportString": "It is **{time}** on **{weekday}**, UTC\nThe next Cycle has not started yet.",
-            "weekName": "Week {number}",
-            "phaseNameNegative": "Phase ♾️",
-            "khronosPhaseString": "Phase ♾️, Week ∅",
-            "phaseEndFar": "See you in the next Cycle!",
-            "phaseEndNear": "Next Phase in {minutes} min"
+            "formattedTime": "{timeOfDayEmoji} {time}"
         },
         "reminders": {
             "reminderSetShort": "I'll remind you about this at about {timestamp}.\nUse `{prefix}forget {rowId}` to delete this reminder.\n",
@@ -128,41 +100,6 @@
             "incorrectSyntax2": "Couldn't understand your time format or you might have an extra semicolon in there confusing things. See `{prefix}help remind` for more details.",
             "incorrectSyntaxGeneric": "Incorrect syntax for reminder. See `{prefix}help remind` for more details.",
             "attemptedTimeTravelError": "Please give a time that is in the future (remember that times are in UTC)."
-        },
-        "stopdoing": {
-            "bossyResponse": "*\"Stop doing nomic\", \"what time is it?\", \"trungify this meme\", \"pool roll some bullshit\".*\n\nDon't you all have anything better to do?",
-            "dlUpdate": {
-                "start": "There is an update for {prefix}stopdoingnomic, would you like to download it?",
-                "badResponse": "well, fine then. be that way I guess...",
-                "responseWaitedTooLong": "Well fine then. Ignore me why don't you...",
-                "downloading0%": "Downloading: `[          ]`",
-                "downloading20%": "Downloading: `[||        ]` 20%",
-                "downloading42%": "Downloading: `[||||      ]` 42%",
-                "downloading69%": "Downloading: `[|||||||   ]` 69% (nice)",
-                "downloading91%": "Downloading: `[||||||||| ]` 91%",
-                "downloading96%": "Downloading: `[||||||||||]` 96%",
-                "downloading99%1": "Downloading: `[||||||||||]` 99%",
-                "downloading99%2": "Downloading: `[||||||||||]` 99%.",
-                "downloading99%3": "Downloading: `[||||||||||]` 99%..",
-                "downloading99%4": "Downloading: `[||||||||||]` 99%...",
-                "downloadingError": "Downloading: `[||||||||||]` 99%... ERROR",
-                "dlExpletive": "shit.",
-                "tryAgainLater": "uhh... let's just try that again later",
-                "downloadingSuccess": "Downloading: `[||||||||||]` 100%",
-                "shockAndAwe": "??? O_o",
-                "actuallyWorkedDisbelief": "Holy shit it actually worked?? Congrats???"
-            }
-        },
-        "reaction_tracking": {
-            "trackerCreated": "Tracker created between `#{trackingChannelName}` and `#{channelName}`.",
-            "trackerAlreadyExists": "Tracker relationship already exists between `#{trackingChannelName}` and `#{channelName}`.",
-            "trackerRemoved": "Tracking relationship between `#{trackingChannelName}` and `#{channelName}` removed.",
-            "trackerNotExist": "There is not a tracking relationship between `#{trackingChannelName}` and `#{channelName}`."
-        },
-        "secret_keeping": {
-            "backticksDetected": "I noticed you have a triple of backticks \\`\\`\\` in your message. This might lead to uncopiable formatting below",
-            "messageRealLong": "*Your message is really long and will split the codeblock. Keep that in mind when verifying.*",
-            "secretReply": "**This is the hash for your message:**\n```{hash}```\n**And this is the message that was hashed. You can check it with `{prefix}sha`:**\n```{msg}```"
         }
     }
 }

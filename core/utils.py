@@ -1,7 +1,4 @@
-from discord import Message, TextChannel, User
-from random import choice
-
-from config.config import GLOBAL_ADMIN_IDS, SERVER_ADMIN_IDS, CARDS, MAX_CACHE_LENGTH, MESSAGE_LIMIT, LINE_SPLIT_LIMIT
+from config.config import GLOBAL_ADMIN_IDS, SERVER_ADMIN_IDS, MESSAGE_LIMIT, LINE_SPLIT_LIMIT
 
 
 def trim_quotes(string):
@@ -13,6 +10,9 @@ def trim_quotes(string):
 
 
 def strip_command(message, command):
+    '''
+    Strip the leading command word off a message, if it's there.
+    '''
     if not message.startswith(command):
         return message
 
@@ -30,7 +30,9 @@ def is_admin(userId, serverId=None):
 
 
 def roman_numeralize(num):
-    '''Stolen and modified from w3resource.com'''
+    '''
+    Stolen and modified from w3resource.com
+    '''
     if num == 0:
         return '0'
 
@@ -45,56 +47,6 @@ def roman_numeralize(num):
             num -= val[i]
         i += 1
     return roman_num
-
-
-def draw_random_card_sets(width, groups):
-    out = ''
-    for i in range(groups):
-        cards = [choice(CARDS) for _ in range(width)]
-        out += ''.join(cards) + ('\n' if i < groups else '')
-
-    return out
-
-
-class MemoizeCache():
-    def __init__(self, bot) -> None:
-        self.bot = bot
-        self.cachedChannels = {}
-        self.cachedMessages = {}
-        self.cachedUsers = {}
-
-    async def get_channel(self, id: int) -> TextChannel:
-        if id not in self.cachedChannels:
-
-            # "Clear the cache" if it gets too big
-            if len(self.cachedChannels) >= MAX_CACHE_LENGTH:
-                self.cachedChannels = {}
-
-            self.cachedChannels[id] = await self.bot.fetch_channel(id)
-
-        return self.cachedChannels[id]
-
-    async def get_message(self, channel: TextChannel, id: int) -> Message:
-        if id not in self.cachedMessages:
-
-            # "Clear the cache" if it gets too big
-            if len(self.cachedMessages) >= MAX_CACHE_LENGTH:
-                self.cachedMessages = {}
-
-            self.cachedMessages[id] = await channel.fetch_message(id)
-
-        return self.cachedMessages[id]
-
-    async def get_user(self, id: int) -> User:
-        if id not in self.cachedUsers:
-
-            # "Clear the cache" if it gets too big
-            if len(self.cachedUsers) >= MAX_CACHE_LENGTH:
-                self.cachedUsers = {}
-
-            self.cachedUsers[id] = await self.bot.fetch_user(id)
-
-        return self.cachedUsers[id]
 
 
 def page_message(message: str, limit: int = MESSAGE_LIMIT, line_split_limit: int = LINE_SPLIT_LIMIT) -> list[str]:
