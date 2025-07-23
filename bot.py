@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from config.config import DEBUG, PREFIX
 from core.log import log
 
-from core import language
 
 ###########
 # Globals #
@@ -59,6 +58,7 @@ async def setup_hook():
         db.set_tables()
 
     # Setup locale files
+    from core import language
     language.Locale(None).initialize()
 
     # Load cogs
