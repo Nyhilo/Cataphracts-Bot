@@ -24,7 +24,7 @@ New bot commands should be implemented in `cogs/cataphract.py`, which should be 
 
 All program code otherwise should go somewhere in `core/` (such as `core/cataphract.py` to start).
 
-You can test new `core/` code without running the bot by writing test in the `tests/` folder.
+You can test new `core/` code without running the bot by writing test in the `tests/` folder. This repository uses the wonderful [pytest](https://docs.pytest.org/en/stable/) for unit testing. Simply run `pytest tests/{your test file}` and it will run all functions that start with `test_` in that file.
 
 If you add any libraries during your development, please update the requirements.txt using [pipreqs](https://pypi.org/project/pipreqs/).
 
