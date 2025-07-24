@@ -11,9 +11,9 @@ import core.language as language
 globalLocale = language.Locale('global')
 
 
-class Cycle(commands.Cog, name='Current Cycle'):
+class Cycle(commands.Cog, name='Time Tracking'):
     '''
-    Commands related to the current Cycle of Infinite Nomic.
+    Commands related to the cycle of time.
     '''
 
     def __init__(self, bot):

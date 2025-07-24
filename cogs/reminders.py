@@ -84,7 +84,7 @@ class Reminders(commands.Cog, name='Reminders'):
                   '\tWeekly: Repeats every 7 days\n'
                   '\tFornightly: Repeats every 14 days\n'
                   '\tMonthly: Repeats each month on the day†\n'
-                  '\tMonth-End: Repeats at the end of each month'
+                  # '\tMonth-End: Repeats at the end of each month'
                   '\tYearly: Repeats every year on the day†\n'
                   '\tYear-End: Repeats on the last day of the year\n'
                   '† If set on the 31st, 30th, or 29th, will repeat on the '
@@ -109,7 +109,7 @@ class Reminders(commands.Cog, name='Reminders'):
             '3': 'Weekly',
             '4': 'Fornightly',
             '5': 'Monthly',
-            '6': 'Month-end',
+            # '6': 'Month-end',
             '7': 'Yearly',
             '8': 'Year-end'
         }
@@ -132,9 +132,9 @@ class Reminders(commands.Cog, name='Reminders'):
             'monthly': 5,
             'month': 5,
             'm': 5,
-            'month-end': 6,
-            'monthend': 6,
-            'me': 6,
+            # 'month-end': 6,
+            # 'monthend': 6,
+            # 'me': 6,
             'yearly': 7,
             'year': 7,
             'y': 7,

@@ -4,6 +4,9 @@
         "rateLimitMessage": "*We are being rate limited by discord. I'll let you know when your command has resolved within a few minutes.*"
     },
     "cogs": {
+        "cataphract": {
+            "helloString": "Hello {audience}!"
+        },
         "cycle": {},
         "locale": {
             "setNoLocaleGiven": "Please include the name of the locale you want to set.",

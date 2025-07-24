@@ -120,7 +120,7 @@ def _get_reoccurrence_datetime(reoccur, originalTime, now):
 
         case Reoccur.MONTHEND:
             newTime = originalTime.replace(day=31, month=1, year=now.year)
-            print(newTime)
+
             monthCounter = 1
             year = now.year
             while newTime <= now:
@@ -128,9 +128,9 @@ def _get_reoccurrence_datetime(reoccur, originalTime, now):
                     monthCounter = 1
                     year += 1
                     originalTime.replace(year=now.year)
-                print(monthCounter)
+
                 newTime = originalTime + relativedelta(month=monthCounter)
-                print(newTime)
+
                 monthCounter += 1
 
             return newTime
