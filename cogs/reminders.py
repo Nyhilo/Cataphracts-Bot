@@ -180,7 +180,7 @@ class Reminders(commands.Cog, name='Reminders'):
             msg = task['RemindMsg']
             rowId = task['rowid']
             channelId = task['ChannelId']
-            channel = self.bot.get_channel(channelId)
+            channel = await self.bot.fetch_channel(channelId)
             if channel is None:
                 log.info(
                     f'Channel with id {channelId} does not exist. Setting reminder with id {rowId} to inactive...')
@@ -199,7 +199,7 @@ class Reminders(commands.Cog, name='Reminders'):
                     reminders.refresh_reoccuring_reminder(task)
 
             except discord.NotFound:
-                await replyTo.reply(locale.get_string('remindChannelNotFound',
+                await channel.reply(locale.get_string('remindChannelNotFound',
                                                       userAt=userAt, createdAt=createdAt, message=_msg))
             if not task['Reoccur']:
                 log.info(reminders.unset_reminder(rowId, overrideId=True))
